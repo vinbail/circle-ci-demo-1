@@ -1,0 +1,14 @@
+version: 2.1
+
+jobs:
+  checkoutAndTest:
+    machine: true
+    steps:
+      - checkout
+      - run: node --version # <- won't work
+      - run: npm install
+      - run: npm run test
+workflows:
+  build:
+    jobs:
+      - checkoutAndTest
