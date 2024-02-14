@@ -1,13 +1,14 @@
 version: 2.1
 
 jobs:
-  sayhello:
-    description: A job that says Hello
+  checkoutAndTest:
     machine: true
     steps:
-      - run: echo "Hello World!"
-
+      - checkout
+      - run: node --version # <- won't work
+      - run: npm install
+      - run: npm run test
 workflows:
-  monWorkflow:
+  build:
     jobs:
-      - sayhello
+      - checkoutAndTest
