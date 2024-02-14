@@ -1,0 +1,13 @@
+version: 2.1
+
+jobs:
+  sayhello:
+    description: A job that says Hello
+    machine: true
+    steps:
+      - run: echo "Hello World!"
+
+workflows:
+  monWorkflow:
+    jobs:
+      - sayhello
