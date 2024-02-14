@@ -1,0 +1,19 @@
+version: 2.1
+
+jobs:
+  sayhelloWithParams:
+    description: A job that says Hello
+    parameters:
+      saywhat:
+        description: "To whom shall we say hello?"
+        default: "World"
+        type: string
+    machine: true
+    steps:
+      - run: echo "Hello << parameters.saywhat >>"
+
+workflows:
+  monWorkflow:
+    jobs:
+      - sayhelloWithParams:
+          saywhat: Everyone

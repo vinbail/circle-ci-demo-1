@@ -1,0 +1,23 @@
+version: 2.1
+
+jobs:
+  checkoutAndTest:
+    docker:
+      - image: cimg/node:17.4.0
+    steps:
+      - checkout
+      - run: node --version
+      - run: npm --version
+      - run: npm install
+      - run: npm run test
+  afterTests:
+    machine: true
+    steps:
+      - run: echo "tests have passed!"
+workflows:
+  build:
+    jobs:
+      - checkoutAndTest
+      - afterTests:
+          requires:
+            - checkoutAndTest

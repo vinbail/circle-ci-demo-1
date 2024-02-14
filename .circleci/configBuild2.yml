@@ -1,0 +1,20 @@
+version: 2.1
+
+jobs:
+  checkoutAndTest:
+    machine: true
+    steps:
+      - checkout
+      - run: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+      - run: . ~/.nvm/nvm.sh # <-- won't work
+      - run: nvm --version
+      - run: nvm install node
+      - run: nvm use node
+      - run: node --version
+      - run: npm --version
+      - run: npm install
+      - run: npm run test
+workflows:
+  build:
+    jobs:
+      - checkoutAndTest
