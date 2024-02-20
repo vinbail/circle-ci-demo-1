@@ -1,0 +1,20 @@
+version: 2.1
+
+jobs:
+  sayAllHello:
+    description: A job that says mutiple Hello
+    parameters:
+      saywhat:
+        description: "To whom shall we say hello?"
+        default: "World"
+        type: string
+    machine: true
+    steps:
+      - run: echo "Hello World!"
+      - run: echo "Hello << parameters.saywhat >>"
+      - run: echo "Hello Everyone!"
+workflows:
+  monWorkflow:
+    jobs:
+      - sayAllHello:
+          saywhat: Intégration Web
